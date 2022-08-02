@@ -1,13 +1,33 @@
 /* eslint-disable @next/next/no-img-element */
-// import Image from "next/image";
-
-// import jsonData from '../db.json'
+import Head from 'next/head';
 import { Navbar } from '../components/navbar';
 import styles from '../styles/EOM.module.css';
 
 export const EOM = ({ employee }) => {
     console.log(employee)
     return(
+        <>
+        <Head>
+            <title>Employee Of The Month</title>
+            <meta
+            name="description"
+            content={`This month's employee of the month is ${employee.name}`}
+            />
+
+            <meta property="og:image" content={employee.image} />
+            <meta property="og:title" content="Employee Of The Month" />
+            <meta
+            property="og:description"
+            content={`This month's employee of the month is ${employee.name}`}
+            />
+
+            <meta property="twitter:image" content={employee.image} />
+            <meta property="twitter:title" content="Employee Of The Month" />
+            <meta
+            property="twitter:description"
+            content={`This month's employee of the month is ${employee.name}`}
+            />
+        </Head>
         <div className='page-container'>
             <Navbar />
             <div className={styles.main}>
@@ -21,6 +41,7 @@ export const EOM = ({ employee }) => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 
