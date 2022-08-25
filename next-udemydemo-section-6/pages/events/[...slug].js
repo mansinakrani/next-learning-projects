@@ -11,10 +11,17 @@ import Head from 'next/head';
 function FilteredEventsPage(props) {
   const router = useRouter();
 
+  const pageHeadData = (
+    <Head>
+    <title>Filtered Events</title>
+      <meta name='description' content={`All events for ${props.date.month}/${props.date.year}.`} />
+    </Head>
+  );
 
   if (props.hasError) {
     return (
       <Fragment>
+        {pageHeadData}
         <ErrorAlert>
           <p>Invalid filter. Please adjust your values!</p>
         </ErrorAlert>
@@ -30,6 +37,7 @@ function FilteredEventsPage(props) {
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
       <Fragment>
+        {pageHeadData}
         <ErrorAlert>
           <p>No events found for the chosen filter!</p>
         </ErrorAlert>
@@ -44,10 +52,7 @@ function FilteredEventsPage(props) {
 
   return (
     <Fragment>
-      <Head>
-      <title>Filtered Events</title>
-        <meta name='description' content={`All events for ${props.date.month}/${props.date.year}.`} />
-      </Head>
+      {pageHeadData}
       <ResultsTitle date={date} />
       <EventList items={filteredEvents} />
     </Fragment>
