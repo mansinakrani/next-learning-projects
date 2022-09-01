@@ -1,11 +1,11 @@
 import fs from 'fs'; // file system Node.js module
 import path from 'path'; // path Node.js module
 
-function buildFeedbackPath() {
+export function buildFeedbackPath() {
     return path.join(process.cwd(), 'data', 'feedback.json');
 }
 
-function extractFeedback(filePath) {
+export function extractFeedback(filePath) {
     const fileData = fs.readFileSync(filePath); // fs module to write to a file
     const data = JSON.parse(fileData);
     return data;
