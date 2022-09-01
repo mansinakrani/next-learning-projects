@@ -1,9 +1,22 @@
+import { Fragment, useState } from "react";
 import { buildFeedbackPath, extractFeedback } from "../api/feedback";
 
 function FeedbackPage(props) {
-    return <ul>
-        {props.feedbackItems.map((item) => (<li key={item.id}>{item.text}</li>))}
-    </ul>
+    const [feedbackData, setFeedbackData] = useState();
+    function loadFeedbackHandler(id) {
+        fetch(`/api/${id}`).then(response => response.json()).then(data => {
+            setFeedbackData(data.feedback);
+        }); // /api/some-ffedback-id
+    }
+
+    return (
+        <Fragment>
+            {feedbackData && <p>{feedbackData.email}</p>}
+            <ul>
+                {props.feedbackItems.map((item) => (<li key={item.id}>{item.text}{' '}<button onClick={loadFeedbackHandler.bind(null, item.id)}>Show Details</button></li>))}
+            </ul>
+        </Fragment>
+    );
 }
 
 export async function getStaticProps() {
