@@ -37,7 +37,7 @@ const DUMMY_POSTS = [
 
 function AllPostsPage() {
     return (
-        <AllPosts />
+        <AllPosts posts={DUMMY_POSTS} />
     );
 }
 
