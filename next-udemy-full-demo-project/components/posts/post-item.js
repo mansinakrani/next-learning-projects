@@ -17,7 +17,7 @@ function PostItem(props) {
                         <Image src={imagePath} alt={title} width={300} height={200} layout='responsive' />
                     </div>
                     <div className={classes.content}>
-                        <he>{title}</he>
+                        <h3>{title}</h3>
                         <time>{formattedDate}</time>
                         <p>{excerpt}</p>
                     </div>
