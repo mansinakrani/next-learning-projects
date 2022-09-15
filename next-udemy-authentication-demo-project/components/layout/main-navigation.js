@@ -1,4 +1,4 @@
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link';
 
 import classes from './main-navigation.module.css';
@@ -6,7 +6,10 @@ import classes from './main-navigation.module.css';
 function MainNavigation() {
   const { data: session, status } = useSession() //while using useSession add sessionProvider in _app.js file
   const loading = status === "loading" //v4
-  console.log({ session, loading })
+
+  function logoutHandler() {
+    signOut();
+  }
 
   return (
     <header className={classes.header}>
@@ -24,7 +27,7 @@ function MainNavigation() {
             <Link href='/profile'>Profile</Link>
           </li>)}
           {session && (<li>
-            <button>Logout</button>
+            <button onClick={logoutHandler}>Logout</button>
           </li>)}
         </ul>
       </nav>
